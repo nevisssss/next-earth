@@ -40,6 +40,14 @@ export interface RecommendResponse {
   recommendations: Recommendation[];
 }
 
+export interface RoleClickEvent {
+  roleId: string;
+  path: PathChoice;
+  country?: string;
+  timestamp: string;
+  userAgent?: string;
+}
+
 export interface NewsItem {
   title: string;
   source: string;
