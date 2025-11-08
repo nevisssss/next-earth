@@ -1,0 +1,28 @@
+.container {
+  border-radius: 16px;
+  border: 1px dashed rgba(4, 120, 87, 0.4);
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.caption {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.copy {
+  margin: 0.6rem 0 0.8rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.source {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}

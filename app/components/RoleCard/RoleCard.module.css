@@ -1,0 +1,124 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 1.75rem;
+  box-shadow: 0 20px 45px rgba(15, 118, 110, 0.08);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  margin: 0 0 0.4rem 0;
+}
+
+.title {
+  font-size: 1.5rem;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.scoreBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 0.9rem;
+  border-radius: 14px;
+  background: rgba(4, 120, 87, 0.1);
+  color: var(--primary-color);
+  min-width: 80px;
+}
+
+.scoreValue {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.scoreSuffix {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+.body {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.learning h4 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.learning ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.5rem;
+  color: var(--primary-color);
+}
+
+.learning a {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.learning a:hover {
+  text-decoration: underline;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.interestedBtn {
+  border: none;
+  border-radius: 9999px;
+  padding: 0.75rem 1.75rem;
+  background: var(--primary-color);
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.interestedBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(4, 120, 87, 0.2);
+}
+
+@media (max-width: 640px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .scoreBox {
+    flex-direction: row;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.4rem 0.9rem;
+  }
+
+  .scoreValue {
+    font-size: 1.35rem;
+  }
+}

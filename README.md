@@ -1,37 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Renewus – Climate Action Planner
 
-## Getting Started
+Renewus is a hackathon-ready Next.js MVP that pairs youth (and any motivated neighbour) with climate-action roles in under a minute. The experience stitches together lightweight datasets, a transparent hybrid matcher, and supportive micro-learning nudges so teams can demo impact quickly.
 
 Install dependencies, then run the development server:
 
 ```bash
 npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000` to walk through the four-screen flow. The profile and recommendation state are stored in `sessionStorage`, so page reloads keep your inputs during a demo.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Testing the APIs directly
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# Recommendation sampler
+curl -X POST http://localhost:3000/api/recommend \
+  -H "Content-Type: application/json" \
+  -d '{
+        "path": "post_disaster",
+        "country": "Philippines",
+        "age": 19,
+        "skills": ["first aid", "organizing"],
+        "language": "en",
+        "equityFlag": true
+      }' | jq
 
-## Learn More
+# Static news feed
+curl "http://localhost:3000/api/news?country=Philippines&topic=climate" | jq
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 🧪 Linting
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run lint
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📊 Data sources
 
-## Deploy on Vercel
+- **Risk scores** – seeded from public ASDI/NOAA climate risk references.
+- **Roles & learning links** – curated from IFRC, WHO, FEMA, FAO, SEI, and allied training portals (all open resources).
+- **News feed** – static but structured for quick swaps with trusted APIs (ReliefWeb, GDACS, etc.).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🛣️ Demo narrative cheat sheet
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Problem → youth want to help after climate shocks but lack fit-for-them roles.
+2. Solution → Renewus blends local hazard data + personal skills into three actionable matches.
+3. Live flow → path → profile → recommendations → save plan → updates.
+4. Impact → emphasise equity boost and learning click-throughs.
+5. Architecture → highlight scoring weights, JSON catalogs, and optional LLM why-box.
+6. Roadmap → more countries, SMS, partner feeds.
+
+## 📹 Demo video
+
+Record a 60–90 second walkthrough (Loom/YouTube) and drop the link here once ready.
+
