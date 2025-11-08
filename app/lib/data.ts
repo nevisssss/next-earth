@@ -22,8 +22,8 @@ const fallbackRoles: Role[] = [
     skills: ['first aid', 'organizing', 'communication'],
     hazard_fit: { flood: 0.9, cyclone: 0.8, heat: 0.2 },
     microlearning: [
-      { title: 'Shelter Operations 101', link: 'https://humanitarian.atlassian.net/wiki/spaces/Shelter/overview' },
-      { title: 'Emergency Comms Basics', link: 'https://www.ifrc.org/resources/emergency-communication-guidelines' },
+      { title: 'Shelter Ops 101', link: 'https://humanitarian.atlassian.net/wiki/spaces/Shelter/overview' },
+      { title: 'Emergency Comms 101', link: 'https://www.ifrc.org/resources/emergency-communication-guidelines' },
     ],
   },
   {
@@ -38,6 +38,16 @@ const fallbackRoles: Role[] = [
   },
   {
     id: 'role_03',
+    title: 'Community Health Clinic Support',
+    path: 'help_hospitals',
+    skills: ['first aid', 'record keeping', 'communication'],
+    hazard_fit: { flood: 0.6, cyclone: 0.5, heat: 0.4 },
+    microlearning: [
+      { title: 'Community Health Essentials', link: 'https://www.who.int/health-topics/community-health' },
+    ],
+  },
+  {
+    id: 'role_04',
     title: 'Emergency Logistics Runner',
     path: 'post_disaster',
     skills: ['organizing', 'coordination', 'communication'],
@@ -47,43 +57,33 @@ const fallbackRoles: Role[] = [
     ],
   },
   {
-    id: 'role_04',
-    title: 'Disaster Relief Radio Operator',
-    path: 'post_disaster',
-    skills: ['radio', 'communication', 'coordination'],
-    hazard_fit: { flood: 0.6, cyclone: 0.8, heat: 0.3 },
-    microlearning: [
-      { title: 'Humanitarian Radio Intro', link: 'https://www.humanitarianresponse.info/en/operations/global/telecommunications' },
-    ],
-  },
-  {
     id: 'role_05',
-    title: 'Relief Supplies Inventory Lead',
-    path: 'post_disaster',
-    skills: ['organizing', 'inventory', 'documentation'],
-    hazard_fit: { flood: 0.7, cyclone: 0.5, heat: 0.4 },
+    title: 'Climate Resilient Agriculture Aide',
+    path: 'green_workforce',
+    skills: ['community outreach', 'agriculture', 'organizing'],
+    hazard_fit: { flood: 0.6, cyclone: 0.4, heat: 0.7 },
     microlearning: [
-      { title: 'Warehouse Management 101', link: 'https://www.humanitarianlogistics.org/' },
+      { title: 'Climate Smart Agriculture Overview', link: 'https://www.fao.org/climate-smart-agriculture/en/' },
     ],
   },
   {
     id: 'role_06',
+    title: 'Solar Maintenance Trainee',
+    path: 'green_workforce',
+    skills: ['basic tools', 'safety', 'electrical aptitude'],
+    hazard_fit: { flood: 0.4, cyclone: 0.5, heat: 0.7 },
+    microlearning: [
+      { title: 'Intro to Solar Safety (2h)', link: 'https://www.solarenergy.org/training-resources/' },
+    ],
+  },
+  {
+    id: 'role_07',
     title: 'Hospital Triage Support',
     path: 'help_hospitals',
     skills: ['first aid', 'communication', 'calm under pressure'],
     hazard_fit: { flood: 0.5, cyclone: 0.6, heat: 0.4 },
     microlearning: [
       { title: 'Basics of Triage', link: 'https://www.cdc.gov/cpr/readiness/healthcare/triage.htm' },
-    ],
-  },
-  {
-    id: 'role_07',
-    title: 'Mobile Clinic Volunteer',
-    path: 'help_hospitals',
-    skills: ['first aid', 'community outreach', 'transport'],
-    hazard_fit: { flood: 0.6, cyclone: 0.5, heat: 0.6 },
-    microlearning: [
-      { title: 'Mobile Health Readiness', link: 'https://www.who.int/initiatives/mobile-health' },
     ],
   },
   {
@@ -98,72 +98,12 @@ const fallbackRoles: Role[] = [
   },
   {
     id: 'role_09',
-    title: 'Hospital Supply Chain Tracker',
-    path: 'help_hospitals',
-    skills: ['inventory', 'spreadsheets', 'communication'],
-    hazard_fit: { flood: 0.5, cyclone: 0.4, heat: 0.4 },
-    microlearning: [
-      { title: 'Health Supply Logistics', link: 'https://openwho.org/courses/health-logistics' },
-    ],
-  },
-  {
-    id: 'role_10',
-    title: 'Patient Navigation Volunteer',
-    path: 'help_hospitals',
-    skills: ['communication', 'language support', 'empathy'],
-    hazard_fit: { flood: 0.4, cyclone: 0.5, heat: 0.5 },
-    microlearning: [
-      { title: 'Basics of Patient Navigation', link: 'https://navigation.academy/navigation-basics' },
-    ],
-  },
-  {
-    id: 'role_11',
-    title: 'Solar Maintenance Trainee',
+    title: 'Community Resilience Workshop Host',
     path: 'green_workforce',
-    skills: ['basic tools', 'safety', 'electrical aptitude'],
-    hazard_fit: { flood: 0.4, cyclone: 0.5, heat: 0.7 },
-    microlearning: [
-      { title: 'Intro to Solar Safety', link: 'https://www.solarenergy.org/training-resources/' },
-    ],
-  },
-  {
-    id: 'role_12',
-    title: 'Climate Smart Agriculture Aide',
-    path: 'green_workforce',
-    skills: ['community outreach', 'agriculture', 'organizing'],
-    hazard_fit: { flood: 0.6, cyclone: 0.4, heat: 0.7 },
-    microlearning: [
-      { title: 'Climate Smart Agriculture Overview', link: 'https://www.fao.org/climate-smart-agriculture/en/' },
-    ],
-  },
-  {
-    id: 'role_13',
-    title: 'Community Energy Auditor',
-    path: 'green_workforce',
-    skills: ['data collection', 'communication', 'basic math'],
-    hazard_fit: { flood: 0.5, cyclone: 0.3, heat: 0.6 },
-    microlearning: [
-      { title: 'Household Energy Survey', link: 'https://www.energypedia.info/wiki/Household_Energy_Surveys' },
-    ],
-  },
-  {
-    id: 'role_14',
-    title: 'Mangrove Restoration Crew',
-    path: 'green_workforce',
-    skills: ['field work', 'teamwork', 'ecology'],
-    hazard_fit: { flood: 0.8, cyclone: 0.6, heat: 0.5 },
-    microlearning: [
-      { title: 'Mangrove Basics', link: 'https://www.conservation.org/priorities/mangroves' },
-    ],
-  },
-  {
-    id: 'role_15',
-    title: 'Green Construction Apprentice',
-    path: 'green_workforce',
-    skills: ['basic tools', 'safety', 'learning mindset'],
+    skills: ['communication', 'facilitation', 'organizing'],
     hazard_fit: { flood: 0.5, cyclone: 0.4, heat: 0.6 },
     microlearning: [
-      { title: 'Intro to Resilient Construction', link: 'https://www.fema.gov/emergency-managers/risk-management/building-science' },
+      { title: 'Resilience Training Toolkit', link: 'https://www.preparecenter.org/toolkit/' },
     ],
   },
 ];

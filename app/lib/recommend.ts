@@ -117,7 +117,7 @@ function buildSupportiveWhy(
     : 'your willingness to learn';
 
   const firstSentence = `${hazardPhrase} make the ${role.title.toLowerCase()} impactful for you.`;
-  const secondSentence = `${risk.source} data and your ${skillsPhrase} align well with this role.`;
+  const secondSentence = `ASDI/NOAA data and your ${skillsPhrase} align well with this role.`;
 
   return `${firstSentence} ${secondSentence}`;
 }
