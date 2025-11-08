@@ -36,7 +36,7 @@ export default function PathCards({ selected, onSelect }: PathCardsProps) {
       {pathOptions.map((option) => (
         <button
           key={option.id}
-          className={`${styles.card} ${selected === option.id ? styles.selected : ''} appear`}
+          className={`${styles.card} ${selected === option.id ? styles.selected : ''} ${styles.appear}`}
           onClick={() => onSelect(option.id)}
           aria-pressed={selected === option.id}
         >

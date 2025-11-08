@@ -1,0 +1,5 @@
+[
+  {"country": "Philippines", "flood": 0.8, "cyclone": 0.9, "heat": 0.4, "source": "ASDI/NOAA"},
+  {"country": "Kenya", "flood": 0.6, "cyclone": 0.2, "heat": 0.7, "source": "ASDI/NOAA"},
+  {"country": "India", "flood": 0.7, "cyclone": 0.6, "heat": 0.8, "source": "ASDI/NOAA"}
+]
