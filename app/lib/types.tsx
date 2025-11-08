@@ -18,6 +18,15 @@ export interface Role {
   microlearning: { title: string; link: string }[];
 }
 
+export interface CountryRecord {
+  name: string;
+  iso2: string;
+  iso3: string;
+  region?: string;
+  incomeGroup?: string;
+  population?: number;
+}
+
 export interface RecommendRequest {
   path: PathChoice;
   country: string;

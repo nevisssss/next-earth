@@ -10,7 +10,6 @@ import type { PathChoice, RecommendRequest } from '../lib/types';
 const PATH_STORAGE_KEY = 'renewus:selectedPath';
 const PROFILE_STORAGE_KEY = 'renewus:profile';
 
-const COUNTRIES = ['Philippines', 'Kenya', 'India'];
 const AGE_OPTIONS = [16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
 
 type ProfileDraft = RecommendRequest & { equityFlag: boolean };
@@ -59,12 +58,15 @@ export default function ProfilePage() {
   const storedProfile = useMemo(() => loadStoredProfile(), []);
 
   const [path, setPath] = useState<PathChoice>(storedProfile?.path ?? fallbackPath);
-  const [country, setCountry] = useState<string>(storedProfile?.country ?? 'Philippines');
+  const [country, setCountry] = useState<string>(storedProfile?.country ?? '');
   const [age, setAge] = useState<number>(storedProfile?.age ?? 19);
   const [skills, setSkills] = useState<string[]>(storedProfile?.skills ?? ['organizing']);
   const [language, setLanguage] = useState<string>(storedProfile?.language ?? '');
   const [equityFlag, setEquityFlag] = useState<boolean>(storedProfile?.equityFlag ?? false);
   const [error, setError] = useState<string | null>(null);
+  const [countries, setCountries] = useState<string[]>([]);
+  const [countriesError, setCountriesError] = useState<string | null>(null);
+  const [isLoadingCountries, setIsLoadingCountries] = useState<boolean>(true);
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -73,12 +75,79 @@ export default function ProfilePage() {
     window.sessionStorage.setItem(PATH_STORAGE_KEY, path);
   }, [path]);
 
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadCountries() {
+      setIsLoadingCountries(true);
+      setCountriesError(null);
+
+      try {
+        const response = await fetch('/api/countries');
+        if (!response.ok) {
+          throw new Error(`Request failed with status ${response.status}`);
+        }
+
+        const data = await response.json() as { countries?: { name?: string }[] };
+        const options = (data.countries ?? [])
+          .map((entry) => entry?.name)
+          .filter((name): name is string => Boolean(name));
+
+        if (cancelled) {
+          return;
+        }
+
+        setCountries(options);
+
+        setCountry((current) => {
+          if (storedProfile?.country && options.includes(storedProfile.country)) {
+            return storedProfile.country;
+          }
+
+          if (!storedProfile?.country && current && options.includes(current)) {
+            return current;
+          }
+
+          if (!storedProfile?.country && options.length > 0 && !current) {
+            return options[0];
+          }
+
+          if (storedProfile?.country && !options.includes(storedProfile.country) && options.length > 0) {
+            return options[0];
+          }
+
+          return current;
+        });
+      } catch (fetchError) {
+        console.error('profile_country_load_failed', fetchError);
+        if (!cancelled) {
+          setCountriesError('We could not load the country list.');
+        }
+      } finally {
+        if (!cancelled) {
+          setIsLoadingCountries(false);
+        }
+      }
+    }
+
+    loadCountries();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [storedProfile?.country]);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError(null);
 
     if (!path) {
       setError('Select how you want to help first.');
+      return;
+    }
+
+    if (!country) {
+      setError('Choose a country to continue.');
       return;
     }
 
@@ -121,14 +190,28 @@ export default function ProfilePage() {
               <select
                 value={country}
                 onChange={(event) => setCountry(event.target.value)}
-                className="w-full rounded-lg border border-emerald-200 bg-white px-4 py-3 text-base text-slate-800 focus:border-emerald-400 focus:outline-none"
+                disabled={isLoadingCountries || countries.length === 0}
+                className="w-full rounded-lg border border-emerald-200 bg-white px-4 py-3 text-base text-slate-800 focus:border-emerald-400 focus:outline-none disabled:cursor-not-allowed disabled:bg-slate-100"
               >
-                {COUNTRIES.map((option) => (
+                {isLoadingCountries ? (
+                  <option value="" disabled>
+                    Loading countries...
+                  </option>
+                ) : null}
+                {!isLoadingCountries && countries.length === 0 ? (
+                  <option value="" disabled>
+                    No countries available
+                  </option>
+                ) : null}
+                {countries.map((option) => (
                   <option key={option} value={option}>
                     {option}
                   </option>
                 ))}
               </select>
+              {countriesError ? (
+                <span className="text-xs text-red-600">{countriesError}</span>
+              ) : null}
             </label>
 
             <label className="grid gap-2 text-sm font-medium text-slate-700">

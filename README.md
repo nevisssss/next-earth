@@ -2,14 +2,59 @@
 
 Renewus is a hackathon-ready Next.js MVP that pairs youth (and any motivated neighbour) with climate-action roles in under a minute. The experience stitches together lightweight datasets, a transparent hybrid matcher, and supportive micro-learning nudges so teams can demo impact quickly.
 
-Install dependencies, then run the development server:
+## ✨ What you ship in one screenful
+
+1. **Path selection** – choose between helping hospitals, supporting post-disaster communities, or joining the green workforce.
+2. **Your profile** – share country, age, skills, language, and equity context.
+3. **Recommendations** – receive three high-signal roles with ASDI/NOAA-backed risk context, micro-learning links, and clipboard-friendly save.
+4. **Updates & opportunities** – browse curated climate/disaster headlines and training items filtered by country/topic.
+
+## 🧠 How the matching works
+
+- `app/lib/recommend.ts` combines hazard fit, Jaccard skill overlap, and an equity boost to score roles.
+- `data/risk_by_country.json` and `data/roles.json` drive the pipeline; both are tiny, human-curated JSON catalogs.
+- `/api/recommend` validates input, calls the scorer + OpenAI for explanations, and returns three roles plus a compact risk snapshot.
+- `/api/recommend/track` stores in-memory click analytics for quick demo dashboards.
+- `/api/countries` exposes the curated country catalog that powers the profile form.
+- `/docs/prompt.md` holds the guardrailed LLM system prompt (kept deterministic for expo demos).
+
+## 📦 Project structure
+
+```
+app/
+  page.tsx                   # Screen 1 – path selection
+  profile/page.tsx           # Screen 2 – user profile form
+  suggestions/page.tsx       # Screen 3 – recommendations
+  updates/page.tsx           # Screen 4 – updates feed
+  api/
+    countries/route.ts       # Country catalog endpoint
+    recommend/route.ts       # Recommendation endpoint
+    recommend/track/route.ts # Click tracking endpoint
+    news/route.ts            # Static climate/disaster feed
+  components/                # Shared UI widgets (cards, chips, news list, etc.)
+  lib/                       # Data loaders, scorer, analytics, shared types
+
+data/
+  csvjson.json              # Country metadata (ISO codes, region, population)
+  risk_by_country.json       # Flood/cyclone/heat scores for demo countries
+  roles.json                 # 15 curated roles with skills + learning links
+
+docs/
+  architecture.mmd           # High-level diagram (Mermaid source)
+  prompt.md                  # Renewus system prompt for the LLM
+```
+
+## 🚀 Getting started
 
 ```bash
 npm install
+cp .env.example .env.local   # add your OpenAI API key
 npm run dev
 ```
 
 Open `http://localhost:3000` to walk through the four-screen flow. The profile and recommendation state are stored in `sessionStorage`, so page reloads keep your inputs during a demo.
+
+Set `OPENAI_API_KEY` in `.env.local` to enable the live LLM-backed “why” explanations. Optionally, set `OPENAI_MODEL` if you prefer a different deployed model (defaults to `gpt-4o-mini`).
 
 ### Testing the APIs directly
 
