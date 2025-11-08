@@ -1,0 +1,82 @@
+[
+  {
+    "country": "Philippines",
+    "iso2": "PH",
+    "iso3": "PHL",
+    "region": "East Asia & Pacific",
+    "income_group": "Lower middle income",
+    "population": 117337368
+  },
+  {
+    "country": "Kenya",
+    "iso2": "KE",
+    "iso3": "KEN",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Lower middle income",
+    "population": 55100587
+  },
+  {
+    "country": "India",
+    "iso2": "IN",
+    "iso3": "IND",
+    "region": "South Asia",
+    "income_group": "Lower middle income",
+    "population": 1428627663
+  },
+  {
+    "country": "Bangladesh",
+    "iso2": "BD",
+    "iso3": "BGD",
+    "region": "South Asia",
+    "income_group": "Lower middle income",
+    "population": 172954319
+  },
+  {
+    "country": "Indonesia",
+    "iso2": "ID",
+    "iso3": "IDN",
+    "region": "East Asia & Pacific",
+    "income_group": "Upper middle income",
+    "population": 278684305
+  },
+  {
+    "country": "Vietnam",
+    "iso2": "VN",
+    "iso3": "VNM",
+    "region": "East Asia & Pacific",
+    "income_group": "Lower middle income",
+    "population": 100300000
+  },
+  {
+    "country": "Nigeria",
+    "iso2": "NG",
+    "iso3": "NGA",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Lower middle income",
+    "population": 223804632
+  },
+  {
+    "country": "Brazil",
+    "iso2": "BR",
+    "iso3": "BRA",
+    "region": "Latin America & Caribbean",
+    "income_group": "Upper middle income",
+    "population": 203080756
+  },
+  {
+    "country": "Mexico",
+    "iso2": "MX",
+    "iso3": "MEX",
+    "region": "Latin America & Caribbean",
+    "income_group": "Upper middle income",
+    "population": 128455567
+  },
+  {
+    "country": "United States",
+    "iso2": "US",
+    "iso3": "USA",
+    "region": "North America",
+    "income_group": "High income",
+    "population": 339996564
+  }
+]

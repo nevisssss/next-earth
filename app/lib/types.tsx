@@ -18,6 +18,15 @@ export interface Role {
   microlearning: { title: string; link: string }[];
 }
 
+export interface CountryRecord {
+  name: string;
+  iso2: string;
+  iso3: string;
+  region?: string;
+  incomeGroup?: string;
+  population?: number;
+}
+
 export interface RecommendRequest {
   path: PathChoice;
   country: string;
@@ -38,6 +47,14 @@ export interface Recommendation {
 export interface RecommendResponse {
   countryRisk: Omit<RiskSnapshot, 'country'> & { source: string };
   recommendations: Recommendation[];
+}
+
+export interface RoleClickEvent {
+  roleId: string;
+  path: PathChoice;
+  country?: string;
+  timestamp: string;
+  userAgent?: string;
 }
 
 export interface NewsItem {
